@@ -31,6 +31,14 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost',
+    'https://tattoofjernelse.dk',
+    'https://www.tattoofjernelse.dk',
+    'https://removex.dk',
+    'https://www.removex.dk'
+]
+
 
 # Application definition
 
