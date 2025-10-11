@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{% static 'image.png' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RemoveX - Professional Tattoo Removal</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <div class="nav-container">
+          <a href="#" class="logo-link">
+            <img src="{% static 'image.png' %}" alt="RemoveX Logo" class="logo" />
+          </a>
+          <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul class="nav-menu">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#process" class="nav-link">Process</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      {% if 'hero_image' in header_images %}
+      <style>
+        .hero {
+          background: url('{{ header_images.hero_image }}') no-repeat center center/cover;
+        }
+      </style>
+      {% endif %}
+      <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1 class="hero-title">{{header_texts.hero_title}}</h1>
+          <p class="hero-subtitle">{{header_texts.hero_subtitle}}</p>
+          <a href="#contact" class="btn btn-primary">{{header_texts.hero_button_text}}</a>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <div class="container">
+          {% if section_titles.about %}
+          <h2 class="section-title">{{section_titles.about}}</h2>
+          {% else %}
+          <h2 class="section-title">Why Choose RemoveX?</h2>
+          {% endif %}
+          <div class="features-grid">
+            {% for card in about_cards %}
+            <div class="feature-card">
+              <div class="feature-icon">{{card.curcle_icon}}</div>
+              <h3>{{card.title}}</h3>
+              <p>{{card.description}}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="services">
+        <div class="container">
+          {% if section_titles.services %}
+          <h2 class="section-title">{{section_titles.services}}</h2>
+          {% else %}
+          <h2 class="section-title">Our Services</h2>
+          {% endif %}
+          <div class="services-grid">
+            {% for service in service_cards %}
+            <div class="service-card">
+              <h3>{{service.title}}</h3>
+              <p>{{service.subtitle}}</p>
+              <ul class="service-list">
+                {% for item in service.list_of_services %}
+                <li>{{item}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery">
+        <div class="container">
+          {% if section_titles.gallery %}
+          <h2 class="section-title">{{section_titles.gallery}}</h2>
+          {% else %}
+          <h2 class="section-title">Our Results</h2>
+          {% endif %}
+          <div class="gallery-slider">
+            <div class="gallery-track">
+              {% if gallery_images %}
+                {% for img in gallery_images %}
+                  <div class="gallery-slide">
+                    <img src="{{ img.image.url }}" alt="{{ img.alt_text }}" />
+                  </div>
+                {% endfor %}
+              {% else %}
+              <div class="gallery-slide">
+                <img src="https://images.pexels.com/photos/3845457/pexels-photo-3845457.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Laser treatment" />
+              </div>
+              <div class="gallery-slide">
+                <img src="https://images.pexels.com/photos/3845508/pexels-photo-3845508.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Professional equipment" />
+              </div>
+              <div class="gallery-slide">
+                <img src="https://images.pexels.com/photos/5069432/pexels-photo-5069432.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Treatment room" />
+              </div>
+              <div class="gallery-slide">
+                <img src="https://images.pexels.com/photos/3845581/pexels-photo-3845581.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Medical procedure" />
+              </div>
+              <div class="gallery-slide">
+                <img src="https://images.pexels.com/photos/3845457/pexels-photo-3845457.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Laser treatment" />
+              </div>
+              <div class="gallery-slide">
+                <img src="https://images.pexels.com/photos/3845508/pexels-photo-3845508.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Professional equipment" />
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="process">
+        <div class="container">
+          {% if section_titles.process %}
+          <h2 class="section-title">{{section_titles.process}}</h2>
+          {% else %}
+          <h2 class="section-title">The RemoveX Process</h2>
+          {% endif %}
+          <div class="process-steps">
+            {% for step in process_cards %}
+            <div class="step">
+              <div class="step-number">{{step.step_number}}</div>
+              <h3>{{step.title}}</h3>
+              <p>{{step.description}}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="container">
+          {% if section_titles.contact %}
+          <h2 class="section-title">{{section_titles.contact}}</h2>
+          {% else %}
+          <h2 class="section-title">Get in Touch</h2>
+          {% endif %}
+          <div class="contact-wrapper">
+            <div class="contact-info">
+              <h3>Contact Information</h3>
+              {% if 'phone' in contact_info %}
+              <div class="info-item">
+                <strong>Phone:</strong>
+                <p>{{contact_info.phone}}</p>
+              </div>
+              {% endif %}
+              {% if 'email' in contact_info %}
+              <div class="info-item">
+                <strong>Email:</strong>
+                <p>{{contact_info.email}}</p>
+              </div>
+              {% endif %}
+              {% if 'address' in contact_info %}
+              <div class="info-item">
+                <strong>Address:</strong>
+                <p>{{contact_info.address}}</p>
+              </div>
+              {% endif %}
+              {% if 'hours' in contact_info %}
+              <div class="info-item">
+                <strong>Hours:</strong>
+                <p>{{contact_info.hours}}</p>
+              </div>
+              {% endif %}
+            </div>
+            <form class="contact-form" method="POST" action="{% url 'send_contact_us_info' %}">
+              {% csrf_token %}
+              <div class="form-group">
+                <input type="text" id="name" name="name" placeholder="Your Name" required />
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Your Email" required />
+              </div>
+              <div class="form-group">
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required/>
+              </div>
+              <div class="form-group">
+                <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+              <div class="form-message" id="formMessage"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <img src="{% static 'image.png' %}" alt="RemoveX Logo" class="footer-logo" />
+            {% if 'below_logo' in footer_texts %}
+            <p>{{footer_texts.below_logo}}</p>
+            {% else %}
+            <p>Professional tattoo removal services with advanced laser technology.</p>
+            {% endif %}
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Services</h4>
+            <ul class="footer-links">
+              {% for service in service_cards %}
+              <li><a href="#services">{{service.title}}</a></li>
+              {% endfor %}
+              <li><a href="#contact">Consultation</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+              {% if 'facebook' in social_links %}
+              <a href="{{social_links.facebook}}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+              {% endif %}
+              {% if 'instagram' in social_links %}
+              <a href="{{social_links.instagram}}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+              {% endif %}
+              {% if 'twitter' in social_links %}
+              <a href="{{social_links.twitter}}" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                </svg>
+              </a>
+              {% endif %}
+              {% if 'linkedin' in social_links %}
+              <a href="{{social_links.linkedin}}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+              {% endif %}
+              {% if 'tiktok' in social_links %}
+              <a href="{{social_links.tiktok}}" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="currentColor">
+                    <path d="M38.0766847,15.8542954 C36.0693906,15.7935177 34.2504839,14.8341149 32.8791434,13.5466056 C32.1316475,12.8317108 31.540171,11.9694126 31.1415066,11.0151329 C30.7426093,10.0603874 30.5453728,9.03391952 30.5619062,8 L24.9731521,8 L24.9731521,28.8295196 C24.9731521,32.3434487 22.8773693,34.4182737 20.2765028,34.4182737 C19.6505623,34.4320127 19.0283477,34.3209362 18.4461858,34.0908659 C17.8640239,33.8612612 17.3337909,33.5175528 16.8862248,33.0797671 C16.4386588,32.6422142 16.0833071,32.1196657 15.8404292,31.5426268 C15.5977841,30.9658208 15.4727358,30.3459348 15.4727358,29.7202272 C15.4727358,29.0940539 15.5977841,28.4746337 15.8404292,27.8978277 C16.0833071,27.3207888 16.4386588,26.7980074 16.8862248,26.3604545 C17.3337909,25.9229017 17.8640239,25.5791933 18.4461858,25.3491229 C19.0283477,25.1192854 19.6505623,25.0084418 20.2765028,25.0219479 C20.7939283,25.0263724 21.3069293,25.1167239 21.794781,25.2902081 L21.794781,19.5985278 C21.2957518,19.4900128 20.7869423,19.436221 20.2765028,19.4380839 C18.2431278,19.4392483 16.2560928,20.0426009 14.5659604,21.1729264 C12.875828,22.303019 11.5587449,23.9090873 10.7814424,25.7878401 C10.003907,27.666593 9.80084889,29.7339663 10.1981162,31.7275214 C10.5953834,33.7217752 11.5748126,35.5530237 13.0129853,36.9904978 C14.4509252,38.4277391 16.2828722,39.4064696 18.277126,39.8028054 C20.2711469,40.1991413 22.3382874,39.9951517 24.2163416,39.2169177 C26.0948616,38.4384508 27.7002312,37.1209021 28.8296253,35.4300711 C29.9592522,33.7397058 30.5619062,31.7522051 30.5619062,29.7188301 L30.5619062,18.8324027 C32.7275484,20.3418321 35.3149087,21.0404263 38.0766847,21.0867664 L38.0766847,15.8542954 Z"></path>               
+                  </svg>
+              </a>
+              {% endif %}
+              {% if 'snapchat' in social_links %}
+              <a href="{{social_links.snapchat}}" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="currentColor">
+                  <path d="M24.1978264,37.8555472 C24.1169208,37.8555472 24.0378264,37.853434 23.9584302,37.8495094 C23.9077132,37.853434 23.854883,37.8555472 23.8017509,37.8555472 C21.9454491,37.8555472 20.7539019,37.0102642 19.6016,36.1924528 C18.8061283,35.6282264 18.0553358,35.0953962 17.1708075,34.9477736 C16.7391094,34.8762264 16.3095245,34.8396981 15.8941283,34.8396981 C15.1463547,34.8396981 14.5564679,34.9556226 14.1253736,35.0401509 C13.8636377,35.0914717 13.6378264,35.1355472 13.4660528,35.1355472 C13.2867321,35.1355472 13.092317,35.0966038 13.0080906,34.8070943 C12.9344302,34.5562264 12.8816,34.3135094 12.8305811,34.0780377 C12.6989585,33.4730566 12.6053736,33.1011321 12.3529962,33.0621887 C9.40839245,32.605434 8.56582642,31.9832453 8.37775094,31.5415849 C8.35118491,31.4784906 8.33609057,31.4150943 8.33246792,31.3523019 C8.32310943,31.1826415 8.4426566,31.0329057 8.6096,31.0057358 C13.1357887,30.2573585 15.1656755,25.6140377 15.2499019,25.4169057 C15.252317,25.4114717 15.2547321,25.4063396 15.2571472,25.4006038 C15.5342792,24.837283 15.588317,24.3482264 15.4189585,23.9473208 C15.1086189,23.2125283 14.0951849,22.8895094 13.4246943,22.6760755 C13.2607698,22.6238491 13.1049962,22.5746415 12.9824302,22.5260377 C11.6444679,21.9950189 11.5327698,21.4498113 11.5856,21.1720755 C11.6752604,20.6990189 12.3052981,20.3690566 12.814883,20.3690566 C12.9546566,20.3690566 13.0778264,20.3938113 13.1813736,20.4424151 C13.7833358,20.7255849 14.3258264,20.8686792 14.7940528,20.8686792 C15.4406943,20.8686792 15.7229585,20.5960755 15.7573736,20.5601509 C15.7410717,20.2528302 15.7205434,19.9316226 15.7000151,19.6001509 C15.5647698,17.4522264 15.3981283,14.7835472 16.0749585,13.2599245 C18.1039396,8.69358491 22.4067321,8.33886792 23.6770717,8.33886792 C23.7099774,8.33886792 24.2343547,8.33313208 24.2343547,8.33313208 L24.3095245,8.33283019 C25.582883,8.33283019 29.895034,8.68845283 31.9255245,13.2575094 C32.6026566,14.781434 32.4348075,17.4528302 32.300166,19.5989434 L32.2944302,19.6922264 C32.2757132,19.9910943 32.2576,20.2815094 32.2425057,20.5598491 C32.2748075,20.5927547 32.5344302,20.8436226 33.1209962,20.866566 L33.1216,20.866566 C33.5671849,20.8493585 34.0791849,20.706566 34.6412981,20.4424151 C34.8061283,20.3651321 34.9890717,20.3491321 35.1134491,20.3491321 C35.3036377,20.3491321 35.4965434,20.3859623 35.6565434,20.4529811 L35.6662038,20.4569057 C36.1208453,20.6184151 36.4185057,20.9384151 36.4251472,21.2726038 C36.430883,21.5871698 36.1914868,22.0605283 35.0177509,22.5260377 C34.8960906,22.5740377 34.740317,22.6235472 34.5754868,22.6760755 C33.9040906,22.8898113 32.8915623,23.2125283 32.5812226,23.9470189 C32.4115623,24.3479245 32.4659019,24.8366792 32.743034,25.4003019 C32.7451472,25.4060377 32.7478642,25.4111698 32.7502792,25.4169057 C32.8342038,25.6137358 34.8622792,30.2558491 39.3905811,31.0051321 C39.5578264,31.0326038 39.6770717,31.1823396 39.6680151,31.352 C39.6640906,31.4156981 39.6489962,31.48 39.6218264,31.5421887 C39.4349585,31.9805283 38.5929962,32.6024151 35.6474868,33.0591698 C35.406883,33.0963019 35.3136,33.4108679 35.1702038,34.0710943 C35.1176755,34.3110943 35.0648453,34.5468679 34.9920906,34.7950189 C34.9292981,35.0102642 34.7955623,35.1110943 34.5706566,35.1110943 L34.5341283,35.1110943 C34.3783547,35.1110943 34.156166,35.0830189 33.8751094,35.0277736 C33.3763925,34.9299623 32.8176,34.8396981 32.1060528,34.8396981 C31.6906566,34.8396981 31.2607698,34.8762264 30.8287698,34.9477736 C29.9451472,35.0953962 29.1949585,35.6273208 28.4009962,36.1906415 C27.2465811,37.0102642 26.0547321,37.8555472 24.1978264,37.8555472"></path>
+                </svg>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          {% if 'copyright' in footer_texts %}
+          <p>{{footer_texts.copyright}}</p>
+          {% else %}
+          <p>&copy; 2025 RemoveX. All rights reserved.</p>
+          {% endif %}
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="{% static 'main.js' %}"></script>
+  </body>
+</html>

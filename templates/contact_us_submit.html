@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Sent!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Define colors based on the image style */
+        :root {
+            --bg-color: #f8f8ff; /* Very light lavender/off-white */
+            --accent-color: #ab47bc; /* Bright purple/magenta accent */
+            --text-color: #333;
+            --success-color: #4CAF50;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .success-card {
+            background-color: white;
+            padding: 40px 30px;
+            max-width: 450px;
+            width: 100%;
+            border-radius: 20px; /* Heavy rounding like the image */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 0 5px rgba(0, 0, 0, 0.04);
+            text-align: center;
+            position: relative;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 25px;
+            left: 30px;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-size: 24px;
+            line-height: 1;
+            transition: color 0.2s;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .back-link:hover {
+            color: #8c2da2; /* Slightly darker hover color */
+            background-color: rgba(171, 71, 188, 0.05);
+        }
+
+        .icon-container {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #e8f5e9; /* Light green background for success icon */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 25px;
+        }
+
+        .check-icon {
+            color: var(--success-color);
+            width: 40px;
+            height: 40px;
+        }
+
+        h1 {
+            color: var(--text-color);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--text-color);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 500px) {
+            .success-card {
+                padding: 30px 20px;
+            }
+            .back-link {
+                top: 15px;
+                left: 15px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-card">
+        <!-- Back Arrow/Link -->
+        <!-- The href="/" redirects to the root URL, as requested -->
+        <a href="/" class="back-link" title="Go back to the previous page">
+            &larr; <!-- Left Arrow Symbol -->
+        </a>
+
+        <div class="icon-container">
+            <!-- Simple SVG Checkmark for professional look -->
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+
+        <h1>Message Received!</h1>
+        <p>
+            Your message is successfully sent, we will contact you very soon.
+        </p>
+    </div>
+</body>
+</html>

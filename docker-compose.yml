@@ -1,0 +1,79 @@
+services:
+  web:
+    build: .
+    # command: python /code/manage.py runserver 0.0.0.0:8000
+    command: gunicorn removex.wsgi --bind 0.0.0.0:8000 --timeout 1000
+    # command: gunicorn Bristo_Nexus.asgi:application --bind 0.0.0.0:8000 -k uvicorn.workers.UvicornWorker
+    volumes:
+      - .:/code
+    environment:
+      - DEBUG=True
+      - DEVELOPMENT_MODE=True
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - DJANGO_ALLOWED_HOSTS=*
+      - BASE_URL=https://removex.dk
+      - app-network
+    networks:
+      - app-network
+    depends_on:
+      - redis
+      - db
+
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./media:/code/media
+    depends_on:
+      - web
+    networks:
+      - app-network
+
+  redis:
+    image: redis
+    expose:
+      - 6379
+    networks:
+      - app-network
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  # celery_worker:
+  #   build: .
+  #   command: celery -A bot.celery worker --loglevel=info
+  #   volumes:
+  #     - .:/code
+  #   depends_on:
+  #     - web
+  #     - redis
+  #   networks:
+  #     - app-network
+  #   environment:
+  #     - DEBUG=True
+  #     - DEVELOPMENT_MODE=True
+  #     - POSTGRES_NAME=postgres
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #     - DJANGO_ALLOWED_HOSTS=*
+  #     - BASE_URL=https://removex.dk
+  #     - app-network
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
