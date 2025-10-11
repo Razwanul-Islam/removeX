@@ -2,3 +2,4 @@ media/*
 staticfiles/*
 !media/
 .env
+venv
