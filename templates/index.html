@@ -21,11 +21,19 @@
             <span></span>
           </button>
           <ul class="nav-menu">
+            {% if menu_items %}
+
+            {% for item in menu_items %}
+            <li><a href="{{ item.url }}" class="nav-link">{{ item.name }}</a></li>
+            {% endfor %}
+
+            {% else %}
             <li><a href="#home" class="nav-link">Home</a></li>
             <li><a href="#about" class="nav-link">About</a></li>
             <li><a href="#services" class="nav-link">Services</a></li>
             <li><a href="#process" class="nav-link">Process</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
+            {% endif %}
           </ul>
         </div>
       </nav>
@@ -158,10 +166,10 @@
           {% endif %}
           <div class="contact-wrapper">
             <div class="contact-info">
-              <h3>Contact Information</h3>
+              <h3>kontaktoplysninger</h3>
               {% if 'phone' in contact_info %}
               <div class="info-item">
-                <strong>Phone:</strong>
+                <strong>Telefon:</strong>
                 <p>{{contact_info.phone}}</p>
               </div>
               {% endif %}
@@ -173,13 +181,13 @@
               {% endif %}
               {% if 'address' in contact_info %}
               <div class="info-item">
-                <strong>Address:</strong>
+                <strong>Adresse:</strong>
                 <p>{{contact_info.address}}</p>
               </div>
               {% endif %}
               {% if 'hours' in contact_info %}
               <div class="info-item">
-                <strong>Hours:</strong>
+                <strong>Åbningstider:</strong>
                 <p>{{contact_info.hours}}</p>
               </div>
               {% endif %}
@@ -187,13 +195,13 @@
             <form class="contact-form" method="POST" action="{% url 'send_contact_us_info' %}">
               {% csrf_token %}
               <div class="form-group">
-                <input type="text" id="name" name="name" placeholder="Your Name" required />
+                <input type="text" id="name" name="name" placeholder="Dit navn" required />
               </div>
               <div class="form-group">
-                <input type="email" id="email" name="email" placeholder="Your Email" required />
+                <input type="email" id="email" name="email" placeholder="Din e-mail" required />
               </div>
               <div class="form-group">
-                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required/>
+                <input type="tel" id="phone" name="phone" placeholder="telefonnummer" required/>
               </div>
               <div class="form-group">
                 <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>

@@ -11,3 +11,12 @@ class SocialMediaLink(models.Model):
         ('snapchat', 'Snapchat')]
     platform = models.CharField(max_length=20, choices=PLATFORM_CHOICES, unique=True)
     url = models.URLField()
+
+class MenuItem(models.Model):
+    order = models.PositiveIntegerField()
+    name = models.CharField(max_length=100)
+    url = models.CharField(max_length=200)
+    def __str__(self):
+        return self.name
+    class Meta:
+        ordering = ['order']

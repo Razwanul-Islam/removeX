@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, View
 # Create your views here.
 from texts.models import SectionTitle,HeaderText, AboutCard, ServiceCard, ProcessCard, ContactInfo, FooterText
 from images.models import HeaderImage, GalleryImage
-from links.models import SocialMediaLink
+from links.models import SocialMediaLink, MenuItem
 from .mail_sender import send_contact_us_notification
 
 class HomeView(TemplateView):
@@ -62,6 +62,10 @@ class HomeView(TemplateView):
         for link in SocialMediaLink.objects.all():
             social_links[link.platform.replace("-","_")] = link.url
         context['social_links'] = social_links
+
+        # Menu Items
+        context['menu_items'] = MenuItem.objects.all().order_by('order')
+
         return context
 
 class SendContactUsInfoView(View):
