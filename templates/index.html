@@ -222,29 +222,37 @@
             {% if 'below_logo' in footer_texts %}
             <p>{{footer_texts.below_logo}}</p>
             {% else %}
-            <p>Professional tattoo removal services with advanced laser technology.</p>
+            <p>Professionel tatoveringsfjerning med avanceret laserteknologi.</p>
             {% endif %}
           </div>
           <div class="footer-section">
-            <h4>Quick Links</h4>
+            <h4>Hurtige links</h4>
             <ul class="footer-links">
+              {% if menu_items %}
+
+              {% for item in menu_items %}
+              <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+              {% endfor %}
+
+              {% else %}
               <li><a href="#home">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#services">Services</a></li>
               <li><a href="#contact">Contact</a></li>
+              {% endif %}
             </ul>
           </div>
           <div class="footer-section">
-            <h4>Services</h4>
+            <h4>Tjenester</h4>
             <ul class="footer-links">
               {% for service in service_cards %}
               <li><a href="#services">{{service.title}}</a></li>
               {% endfor %}
-              <li><a href="#contact">Consultation</a></li>
+              <li><a href="#contact">Konsultation</a></li>
             </ul>
           </div>
           <div class="footer-section">
-            <h4>Follow Us</h4>
+            <h4>Følg os</h4>
             <div class="social-links">
               {% if 'facebook' in social_links %}
               <a href="{{social_links.facebook}}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
